@@ -22,54 +22,49 @@ fun PengelolaHalaman(
 ){
     NavHost(
         navController = navController,
-        startDestination = DestinasiInsert.route
-    ) {
+        startDestination = DestinasiHome.route
+    )
+    {
         composable(
             route = DestinasiHome.route
-        ) {
+        ){
             HomeMhsView(
-                onDetailClick = {nim ->
+                onDetailClick = { nim ->
                     navController.navigate("${DestinasiDetail.route}/$nim")
                     println("PengelolaHalaman: nim = $nim")
                 },
                 onAddMhs = {
                     navController.navigate(DestinasiInsert.route)
                 },
-                modifier = modifier
-            )
+                modifier = modifier)
         }
-
-        composable (
-            route =DestinasiInsert.route
-        ) {
-            InsertMhsView(
-                onBack = {
-                    navController.popBackStack()
-                },
+        composable(
+            route = DestinasiInsert.route
+        ){
+            InsertMhsView(onBack = {
+                navController.popBackStack()
+            },
                 onNavigate = {
                     navController.popBackStack()
                 },
-                modifier = modifier
-            )
+                modifier = modifier)
         }
-
-        composable (
+        composable(
             DestinasiDetail.routeWithArg,
             arguments = listOf(
-                navArgument(DestinasiDetail.NIM) {
+                navArgument(DestinasiDetail.NIM){
                     type = NavType.StringType
                 }
             )
         ){
             val nim = it.arguments?.getString(DestinasiDetail.NIM)
-
             nim?.let { nim ->
                 DetailMhsView(
                     onBack = {
                         navController.popBackStack()
                     },
                     onEditClick = {
-                        navController.navigate("${DestinasiUpdate.route}/$nim")
+                        navController.navigate("${DestinasiUpdate.route}/$it")
                     },
                     modifier = modifier,
                     onDeleteClick = {
@@ -78,15 +73,14 @@ fun PengelolaHalaman(
                 )
             }
         }
-
         composable(
             DestinasiUpdate.routeWithArg,
             arguments = listOf(
-                navArgument (DestinasiUpdate.NIM) {
+                navArgument(DestinasiUpdate.NIM){
                     type = NavType.StringType
                 }
             )
-        ) {
+        ){
             UpdateMhsView(
                 onBack = {
                     navController.popBackStack()
@@ -94,7 +88,7 @@ fun PengelolaHalaman(
                 onNavigate = {
                     navController.popBackStack()
                 },
-                modifier = modifier,
+                modifier = modifier
             )
         }
     }
