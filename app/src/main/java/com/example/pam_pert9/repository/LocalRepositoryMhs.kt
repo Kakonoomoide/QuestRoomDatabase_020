@@ -2,6 +2,7 @@ package com.example.pam_pert9.repository
 
 import com.example.pam_pert9.data.dao.MahasiswaDao
 import com.example.pam_pert9.data.entity.Mahasiswa
+import kotlinx.coroutines.flow.Flow
 
 class LocalRepositoryMhs(private val mahasiswaDao: MahasiswaDao) : RepositoryMhs {
     override suspend fun insertMhs(mahasiswa: Mahasiswa) {
@@ -18,5 +19,9 @@ class LocalRepositoryMhs(private val mahasiswaDao: MahasiswaDao) : RepositoryMhs
 
     override fun getAllMhs(): Flow<List<Mahasiswa>> {
         return mahasiswaDao.getAllMahasiswa()
+    }
+
+    override fun getMhs(nim: String): Flow<Mahasiswa> {
+        return mahasiswaDao.getMahasiswa(nim)
     }
 }
