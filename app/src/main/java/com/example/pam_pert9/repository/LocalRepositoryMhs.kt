@@ -7,4 +7,8 @@ class LocalRepositoryMhs(private val mahasiswaDao: MahasiswaDao) : RepositoryMhs
     override suspend fun insertMhs(mahasiswa: Mahasiswa) {
         mahasiswaDao.insertMahasiswa(mahasiswa)
     }
+
+    override suspend fun deleteMhs(mahasiswa: Mahasiswa) {
+        mahasiswaDao.deleteMahasiswa(mahasiswa)
+    }
 }
