@@ -15,4 +15,8 @@ class LocalRepositoryMhs(private val mahasiswaDao: MahasiswaDao) : RepositoryMhs
     override suspend fun updateMhs(mahasiswa: Mahasiswa) {
         mahasiswaDao.updateMahasiswa(mahasiswa)
     }
+
+    override fun getAllMhs(): Flow<List<Mahasiswa>> {
+        return mahasiswaDao.getAllMahasiswa()
+    }
 }
