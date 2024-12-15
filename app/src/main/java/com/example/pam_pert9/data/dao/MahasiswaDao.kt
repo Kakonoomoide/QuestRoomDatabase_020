@@ -1,6 +1,7 @@
 package com.example.pam_pert9.data.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import com.example.pam_pert9.data.entity.Mahasiswa
 
@@ -11,4 +12,7 @@ import com.example.pam_pert9.data.entity.Mahasiswa
 interface MahasiswaDao {
     @Insert
     suspend fun insertMahasiswa(mahasiswa: Mahasiswa)
+
+    @Delete
+    suspend fun deleteMahasiswa (mahasiswa: Mahasiswa)
 }
