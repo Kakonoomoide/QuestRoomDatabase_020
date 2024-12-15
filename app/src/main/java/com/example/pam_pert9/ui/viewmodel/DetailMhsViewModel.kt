@@ -2,6 +2,7 @@ package com.example.pam_pert9.ui.viewmodel
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import com.example.pam_pert9.data.entity.Mahasiswa
 import com.example.pam_pert9.repository.RepositoryMhs
 
 class DetailMhsViewModel (
@@ -22,4 +23,16 @@ data class DetailUiState(
 
     val isUiEventNotEmpty: Boolean
         get() = detailUiEvent != MahasiswaEvent()
+}
+
+// store data from entity to ui
+fun Mahasiswa.toDetailUiEvent() : MahasiswaEvent {
+    return MahasiswaEvent(
+        nim = nim,
+        nama = nama,
+        jeniskelamin = jenisKelamin,
+        alamat = alamat,
+        kelas = kelas,
+        angkatan = angkatan
+    )
 }
